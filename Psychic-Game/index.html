@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic Game</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<style>
+.h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+</style>
+
+<body>
+  <h1>Psychic Game</h1>
+  <div id="game">
+      <p id="wins"></p>
+      <p id="losses"></p>
+      <p id="guesses"></p>
+      <p id="pressed-keys"></p>
+
+  </div>
+
+  <script type="text/javascript">
+
+  var computerChoices = ["a","b","c","d","e","f","g","h","i",
+  "j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+  var wins = 0;
+  var losses = 0;
+  var guessesLeft = 10;
+
+  var winsPoints = document.getElementById("wins");
+  var losePoints = document.getElementById("losses");
+  var guessesText = document.getElementById("guesses");
+  var pressedKey = document.getElementById("pressed-keys");
+
+
+		
+
+  document.onkeyup = function(event) {
+
+    var userGuess = event.key;
+
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    console.log(computerGuess)
+
+   
+    if(userGuess === computerGuess){
+      wins++;
+      guessesLeft = 10
+      userGuess = [];
+      
+    }else{
+      guessesLeft--;
+    }
+    if(guessesLeft === 0){
+      losses++;
+      userGuess = [];
+  
+    }
+    winsPoints.textContent = "wins: " + wins;
+    guessesText.textContent = "guess left: " + guessesLeft;
+    pressedKey.textContent = "guesses: " + userGuess;
+    losePoints.textContent = "losses: " + losses;
+  }
+        
+
+  </script>
+
+  </body>
+  </html>
